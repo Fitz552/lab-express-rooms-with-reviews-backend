@@ -48,9 +48,8 @@ router.delete("/:id", isAuthenticated, (req,res) => {
 })
 
 router.get("/", isAuthenticated, (req,res) => {
-    Room.find()
+    Room.find().populate("reviews")
     .then(response => {
-        response.populate("reviews")
         res.status(200).json(response)
     })
     .catch (error => {
