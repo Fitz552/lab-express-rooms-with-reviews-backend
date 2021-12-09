@@ -8,7 +8,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated")
 
 router.post("/", isAuthenticated, async (req, res) => {
     try {
-        //lackign validation on who created the room
+        //lacking validation on who created the room
         const newReview = await Review.create(req.body)
         const updatedRoom = await Room.findOneAndUpdate({_id: req.body.roomId},
             {$push: {reviews: newReview._id}}
